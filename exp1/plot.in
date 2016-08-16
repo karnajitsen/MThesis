@@ -1,0 +1,10 @@
+set terminal pdf
+set output 'Plots_GPU.pdf'
+set yrang [100:300]
+set xlabel 'Input Data size in KB'
+set ylabel 'Clock Cycles'
+set xtics 0,300,4000
+set ytics 100,20,300
+set title 'Experiment 1: GPU bencharking for one data read access: K20'
+plot "data/result.txt" title "GPU" with lines
+
