@@ -1,0 +1,9 @@
+set terminal pdf
+set output 'Plots_GPU.pdf'
+set yrang [100:230]
+set xlabel 'Input Data Elements'
+set ylabel 'Clock Cycles'
+set xtics 0,128,2048
+set title 'Experiment 1: GPU bencharking for one data read access: K20'
+plot "data/result.txt" title "GPU" with lines
+
