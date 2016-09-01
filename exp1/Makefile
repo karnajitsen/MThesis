@@ -15,7 +15,8 @@ ref1:
 	./kr 100 100 100
 
 ref0:
-	nvcc -c main.cu kernel.cu -O0
+	nvcc -c main.cu kernel.cu -ptx
+	nvcc -c main.cu kernel.cu
 	nvcc -lm -o kr main.o kernel.o
 	g++ $(SOURCE2) -o ex
 	./ex

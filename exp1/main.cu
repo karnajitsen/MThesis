@@ -10,8 +10,8 @@ using namespace std;
 #define CACHELINE 8
 #define ALLIGNMENT 64
 typedef unsigned long long Dtype;
-
-
+//typedef double Dtype;
+//typedef int Dtype;
 __global__ void VecAdd(Dtype** A, int* N, unsigned long long* d_time, Dtype* xj, Dtype* xi);
 
 
@@ -38,9 +38,9 @@ int main(int argc, char* argv[])
    Dtype *h_A, **d_A;
    int *d_N;           
    std::ofstream fp;
+   srand (time(NULL));
    
-   
-    fp.open("/home/hpc/ihpc/ihpc002h/gpu-exp/Master-thesis/exp1/data/result.txt", std::ofstream::app);
+    fp.open("/home/hpc/ihpc/ihpc002h/gpu-exp/mThesis/exp1/data/result.txt", std::ofstream::app);
  
     h_A  = (Dtype*)memalign(ALLIGNMENT,(N+2)*sizeof(Dtype)); 
      
@@ -55,29 +55,32 @@ int main(int argc, char* argv[])
     
      for(unsigned int i=0; i < N ; i++)
     {
+      //stride = rand()%20;
+      
       h_A[i] = ((Dtype)(uintptr_t)d_A) +  ( (i + stride) % N)*sizeof(Dtype);
     }
     
-    h_A[N]=0;
-    h_A[N+1]=0;         
-    
+    h_A[N]=0.0;
+    h_A[N+1]=0.0;         
+   
     cudaMemcpy(d_A, h_A, (N+2)*sizeof(Dtype), cudaMemcpyHostToDevice );
     cudaMemcpy(d_N, &N, sizeof(int), cudaMemcpyHostToDevice );
-    
+   
     VecAdd<<<1,1>>>(d_A, d_N, d_time, xj, xi);    
     
     cudaMemcpy(&h_time, d_time, sizeof(double), cudaMemcpyDeviceToHost);
-    
+  
     cudaDeviceSynchronize();
-    
+   
     fp << N*8.0/1024.0 << " " << h_time << std::endl;
     
     for(int i =0; i < N ; i++)
     {
-    //  printf("%llu ",*(h_A[i]));
+     //printf("%f ",(h_A[i]));
     }
    
     cudaFree(d_A);
+    cudaFree(d_time);
     free(h_A);
     fp.close();
 }
