@@ -42,8 +42,7 @@ int main(int argc, char* argv[])
    
     fp.open("/home/hpc/ihpc/ihpc002h/gpu-exp/mThesis/exp1/data/result.txt", std::ofstream::app);
  
-    h_A  = (Dtype*)memalign(ALLIGNMENT,(N+2)*sizeof(Dtype)); 
-     
+    h_A  = (Dtype*)memalign(ALLIGNMENT,(N+2)*sizeof(Dtype));      
     
     cudaMalloc(&d_A, (N+2)*sizeof(Dtype));
     cudaMalloc(&d_time, sizeof(unsigned long long));
@@ -58,7 +57,9 @@ int main(int argc, char* argv[])
       //stride = rand()%20;
       
       h_A[i] = ((Dtype)(uintptr_t)d_A) +  ( (i + stride) % N)*sizeof(Dtype);
+    //  h_A[i] = i+1;
     }
+    
     
     h_A[N]=0.0;
     h_A[N+1]=0.0;         

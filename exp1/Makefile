@@ -19,9 +19,12 @@ ref0:
 	nvcc -c main.cu kernel.cu
 	nvcc -lm -o kr main.o kernel.o
 	g++ $(SOURCE2) -o ex
-	./ex
-	chmod 777 execute.sh
-	./execute.sh
+	g++ crex.c -o crex
+	./crex
+	chmod 777 crex.sh
+	chmod 777 exex.sh
+	./crex.sh
+	./exex.sh
 test: 
 	$(CC) $(CFLAGS) $(SOURCE1) -o kr
 	./kr 100 100 100
