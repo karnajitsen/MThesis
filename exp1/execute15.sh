@@ -1,5 +1,5 @@
 cd data
-mv result.txt result.bk_1472830216_15
+mv result.txt result.bk_1473073747_15
 cd ..
 ./kr 160000 15
 ./kr 160010 15

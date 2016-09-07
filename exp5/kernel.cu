@@ -8,21 +8,27 @@ __global__ void VecAdd(Dtype** A, int* N, unsigned long long* d_time, Dtype* xj,
 {
    Dtype *j = *A;   
    unsigned int start_t, end_t;  
-   //for (int it=0; it < *N; it++)   
-     //j=*(Dtype **)j;
+  
+   for (int it=0; it < *N; it++)   
+    j=*(Dtype **)j;
      
-    //*xi=*j;   
-   
-     start_t = clock(); 
-    for (int it=0; it < *N * 16; it++) 
+    *xi=*j;   
+   *d_time = 0;
+      
+    for (int it=0; it < 4; it++) 
     {
-       j=*(Dtype **)(unsigned long long)j;    
+       start_t = clock();
+       repeat256(j=*(Dtype **)(unsigned long long)j;) 
+       end_t = clock();
+       ((Dtype *)A)[*N]=(Dtype) j;
+       *d_time += (unsigned long long)(end_t - start_t);
+       
     }
    
-     end_t = clock();
-     ((Dtype *)A)[*N]=(Dtype) j;
-   *d_time = (unsigned long long)(end_t - start_t) /(*N * 16); 
-   printf( "%d %llu\n", *N, *d_time);
+     
+    // ((Dtype *)A)[*N]=(Dtype) j;
+     //*d_time = (unsigned long long)(end_t - start_t); 
+    // printf( "%d %llu\n", *N, *d_time/256/4);
    
 }
 

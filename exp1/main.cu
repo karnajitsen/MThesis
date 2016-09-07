@@ -40,7 +40,7 @@ int main(int argc, char* argv[])
    std::ofstream fp;
    srand (time(NULL));
    
-    fp.open("/home/hpc/ihpc/ihpc002h/gpu-exp/mThesis/exp1/data/result.txt", std::ofstream::app);
+    fp.open("/home/hpc/ihpc/ihpc002h/gpu-exp/mThesis/exp5/data/result.txt", std::ofstream::app);
  
     h_A  = (Dtype*)memalign(ALLIGNMENT,(N+2)*sizeof(Dtype));      
     

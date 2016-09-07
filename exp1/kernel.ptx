@@ -20,49 +20,64 @@
 	.param .u64 _Z6VecAddPPyPiS_S_S__param_4
 )
 {
-	.reg .pred 	%p<3>;
-	.reg .b32 	%r<14>;
-	.reg .b64 	%rd<17>;
+	.reg .pred 	%p<5>;
+	.reg .b32 	%r<20>;
+	.reg .b64 	%rd<20>;
 
 
-	ld.param.u64 	%rd8, [_Z6VecAddPPyPiS_S_S__param_0];
-	ld.param.u64 	%rd9, [_Z6VecAddPPyPiS_S_S__param_1];
-	ld.param.u64 	%rd7, [_Z6VecAddPPyPiS_S_S__param_2];
-	cvta.to.global.u64 	%rd1, %rd8;
-	ldu.global.u64 	%rd16, [%rd1];
+	ld.param.u64 	%rd11, [_Z6VecAddPPyPiS_S_S__param_0];
+	ld.param.u64 	%rd12, [_Z6VecAddPPyPiS_S_S__param_1];
+	ld.param.u64 	%rd10, [_Z6VecAddPPyPiS_S_S__param_2];
+	cvta.to.global.u64 	%rd1, %rd11;
+	ldu.global.u64 	%rd19, [%rd1];
 	// inline asm
-	mov.u32 	%r6, %clock;
+	mov.u32 	%r9, %clock;
 	// inline asm
-	cvta.to.global.u64 	%rd3, %rd9;
-	ld.global.u32 	%r2, [%rd3];
-	setp.lt.s32	%p1, %r2, 1;
-	@%p1 bra 	BB0_3;
+	cvta.to.global.u64 	%rd3, %rd12;
+	ld.global.u32 	%r1, [%rd3];
+	mov.u32 	%r18, 0;
+	setp.lt.s32	%p1, %r1, 1;
+	@%p1 bra 	BB0_2;
 
-	shl.b32 	%r3, %r2, 4;
-	mov.u32 	%r13, 0;
+BB0_1:
+	ld.u64 	%rd19, [%rd19];
+	add.s32 	%r18, %r18, 1;
+	setp.lt.s32	%p2, %r18, %r1;
+	@%p2 bra 	BB0_1;
 
 BB0_2:
-	ld.u64 	%rd16, [%rd16];
-	add.s32 	%r13, %r13, 1;
-	setp.lt.s32	%p2, %r13, %r3;
-	@%p2 bra 	BB0_2;
+	// inline asm
+	mov.u32 	%r11, %clock;
+	// inline asm
+	ld.global.u32 	%r5, [%rd3];
+	setp.lt.s32	%p3, %r5, 1;
+	@%p3 bra 	BB0_5;
 
-BB0_3:
-	cvta.to.global.u64 	%rd10, %rd7;
+	shl.b32 	%r6, %r5, 4;
+	mov.u32 	%r19, 0;
+
+BB0_4:
+	ld.u64 	%rd19, [%rd19];
+	add.s32 	%r19, %r19, 1;
+	setp.lt.s32	%p4, %r19, %r6;
+	@%p4 bra 	BB0_4;
+
+BB0_5:
+	cvta.to.global.u64 	%rd13, %rd10;
 	// inline asm
-	mov.u32 	%r8, %clock;
+	mov.u32 	%r13, %clock;
 	// inline asm
-	ld.global.u32 	%r9, [%rd3];
-	mul.wide.s32 	%rd11, %r9, 8;
-	add.s64 	%rd12, %rd1, %rd11;
-	st.global.u64 	[%rd12], %rd16;
-	sub.s32 	%r10, %r8, %r6;
-	cvt.u64.u32	%rd13, %r10;
-	ld.global.u32 	%r11, [%rd3];
-	shl.b32 	%r12, %r11, 4;
-	cvt.s64.s32	%rd14, %r12;
-	div.u64 	%rd15, %rd13, %rd14;
-	st.global.u64 	[%rd10], %rd15;
+	ld.global.u32 	%r14, [%rd3];
+	mul.wide.s32 	%rd14, %r14, 8;
+	add.s64 	%rd15, %rd1, %rd14;
+	st.global.u64 	[%rd15], %rd19;
+	sub.s32 	%r15, %r13, %r11;
+	cvt.u64.u32	%rd16, %r15;
+	ld.global.u32 	%r16, [%rd3];
+	shl.b32 	%r17, %r16, 4;
+	cvt.s64.s32	%rd17, %r17;
+	div.u64 	%rd18, %rd16, %rd17;
+	st.global.u64 	[%rd13], %rd18;
 	ret;
 }
 

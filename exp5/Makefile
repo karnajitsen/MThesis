@@ -15,10 +15,11 @@ ref1:
 	./kr 100 100 100
 
 comp0:
-	nvcc -c main.cu kernel.cu
+	nvcc -c main.cu kernel.cu -ptx
+	nvcc -c main.cu kernel.cu -Xptxas -dlcm=ca
 	nvcc -lm -o kr main.o kernel.o
 	g++ $(SOURCE2) -o ex
-	./ex
+	./ex 1
 	chmod 777 execute.sh
 	./execute.sh
 ex0: 

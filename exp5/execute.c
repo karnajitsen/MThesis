@@ -13,23 +13,23 @@ int main(int argc, char * argv[])
    int m, stride; //, n, p, pr = 4, csize = 8;
    //struct timeval tv1, tv2;
    stride = atoi(argv[1]);
-   m = 160000;
+   m = 1900;
    // gettimeofday(&tv2, NULL);
    char filename[100];
    strcpy(filename, "execute");
-   strcat(filename, argv[1]);
+  // strcat(filename, argv[1]);
    strcat(filename,".sh");
    //cout << filename;
      fp = fopen(filename, "w+");
    fprintf(fp, "cd data\n");
    fprintf(fp, "mv result.txt result.bk_%d_%d\n",(int)time(NULL),stride);
-   //stride = 8;
+   stride = 4;
    fprintf(fp, "cd ..\n");
 
-   while ( (m*8.0/1024 ) < 1600)
+   while ( (m*8.0/1024 ) < 100)
         {
    fprintf(fp, "./kr %d %d\n", m, stride);
-    m +=10;
+    m +=4;
     }
     
 
