@@ -75,7 +75,7 @@ int main(int argc, char* argv[])
   
     cudaDeviceSynchronize();
    
-    fp << stride*8.0/1024.0 << " " << setprecision(6) << (double) h_time/(2.0*N) << std::endl;
+    fp << N*8.0/1024.0 << " " << setprecision(6) << (double) h_time/(2.0*N) << std::endl;
     
     for(int i =0; i < N ; i++)
     {
