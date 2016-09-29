@@ -15,8 +15,8 @@ ref1:
 	./kr 100 100 100
 
 ref0:
-	nvcc -c main.cu kernel.cu -O0
-	nvcc -lm -o kr main.o kernel.o
+	nvcc -c main.cu kernel_parallel.cu -O0 -ptx
+	nvcc -lm -o kr main.o kernel_parallel.o
 	g++ $(SOURCE2) -o ex
 	./ex
 	chmod 777 execute.sh

@@ -16,7 +16,7 @@ ref1:
 
 comp0:
 	nvcc -c main.cu kernel.cu -ptx
-	nvcc -c main.cu kernel.cu -Xptxas -dlcm=ca
+	nvcc -c main.cu kernel.cu	
 	nvcc -lm -o kr main.o kernel.o
 	g++ $(SOURCE2) -o ex
 	./ex 1

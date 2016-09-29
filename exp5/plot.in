@@ -1,10 +1,9 @@
 set terminal pdf
-set output 'Plots_GPU-1tsr.pdf'
-set yrang [180:250]
+set output 'Plots_GPU-new.pdf'
+#set yrang [180:250]
 set xlabel 'Input Data size in KB'
 set ylabel 'Clock Cycles'
 #set xtics 1250,20,1500
 #set ytics 190,2,230
-set title 'Experiment 1: GPU bencharking for one data read access: K20'
-plot "data/result.txt" title "GPU" with lines
-
+set title 'Experiment 1: GPU bencharking for one data read access: K20c'
+plot "data/result.txt" using 1:2 with lines title "GPU"

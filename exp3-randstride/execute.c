@@ -7,8 +7,7 @@ int main()
    FILE *fp;
    int m, stride; //, n, p, pr = 4, csize = 8;
    //struct timeval tv1, tv2;
-   m = 128000;
-   stride = 1;
+   m = 32;
    // gettimeofday(&tv2, NULL);
    fp = fopen("execute.sh", "w+");
    fprintf(fp, "cd data\n");
@@ -16,10 +15,10 @@ int main()
    
    fprintf(fp, "cd ..\n");
 
-   while ( stride < 100)
+   while ( (m*8.0/1024 ) < 400)
         {
    fprintf(fp, "./kr %d %d\n", m, stride);
-    stride++;
+    m +=128;
     }
    //fprintf(fp, "gnuplot plot.in\n");
    fclose(fp);

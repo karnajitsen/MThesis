@@ -1,8 +1,11 @@
 #include <stdio.h> 
+//__device__ __managed__ int x, y = 2;
 
 int main() {
   int nDevices;
-
+  
+  double *a;
+  cudaMallocManaged(&a, 10 * sizeof(double));
   cudaGetDeviceCount(&nDevices);
   for (int i = 0; i < nDevices; i++) {
     cudaDeviceProp prop;
@@ -27,3 +30,11 @@ int main() {
     
   }
 } 
+
+
+template <typename T>
+void test()
+{
+  double *a;
+  cudaMallocManaged(&a, 10 * sizeof(double));
+}

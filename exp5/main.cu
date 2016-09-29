@@ -87,7 +87,7 @@ int main(int argc, char* argv[])
     tottime = tottime / (10240.0);
     fp << N*8.0/1024.0 << " " << tottime << std::endl;
    // std::cout << std::setprecision(2);
-  //  cout << std::fixed << std::setprecision(6) << tottime << std::endl;
+    cout << std::fixed << std::setprecision(6) << tottime << std::endl;
     
     for(int i =0; i < N ; i++)
     {

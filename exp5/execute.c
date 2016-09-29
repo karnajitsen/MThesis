@@ -13,7 +13,7 @@ int main(int argc, char * argv[])
    int m, stride; //, n, p, pr = 4, csize = 8;
    //struct timeval tv1, tv2;
    stride = atoi(argv[1]);
-   m = 1900;
+   m = 156200;
    // gettimeofday(&tv2, NULL);
    char filename[100];
    strcpy(filename, "execute");
@@ -26,10 +26,10 @@ int main(int argc, char * argv[])
    stride = 4;
    fprintf(fp, "cd ..\n");
 
-   while ( (m*8.0/1024 ) < 100)
+   while ( (m*8.0/1024 ) < 1400)
         {
    fprintf(fp, "./kr %d %d\n", m, stride);
-    m +=4;
+    m +=1;
     }
     
 
@@ -37,3 +37,5 @@ int main(int argc, char * argv[])
    fclose(fp);
    return 0;
 }
+
+
